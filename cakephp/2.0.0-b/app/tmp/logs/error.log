@@ -1,0 +1,18 @@
+2011-08-11 17:19:05 Error: [MissingControllerException] Controller class HelloController could not be found.
+#0 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/app/webroot/index.php(81): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/index.php(46): require('/Users/onigoetz...')
+#2 {main}
+2011-08-11 17:20:15 Error: [MissingActionException] Action PagesController::hello() could not be found.
+#0 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/lib/Cake/Routing/Dispatcher.php(114): Controller->invokeAction(Object(CakeRequest))
+#1 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/lib/Cake/Routing/Dispatcher.php(96): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest), Object(CakeResponse))
+#2 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/app/webroot/index.php(81): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/index.php(46): require('/Users/onigoetz...')
+#4 {main}
+2011-08-11 17:21:03 Error: [MissingViewException] View file "/Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/app/View/Pages/hello.ctp" is missing.
+#0 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/lib/Cake/View/View.php(352): View->_getViewFileName(NULL)
+#1 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/lib/Cake/Controller/Controller.php(888): View->render(NULL, NULL)
+#2 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/lib/Cake/Routing/Dispatcher.php(121): Controller->render()
+#3 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/lib/Cake/Routing/Dispatcher.php(96): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest), Object(CakeResponse))
+#4 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/app/webroot/index.php(81): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 /Users/onigoetz/Sites/Projets_en_cours/framework-benchs/cakephp/2.0.0-b/index.php(46): require('/Users/onigoetz...')
+#6 {main}

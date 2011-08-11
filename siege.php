@@ -6,21 +6,24 @@ ini_set('display_errors', true);
 // reads a csv file of targets
 function fetch_target_list($file)
 {
-    $line = 0;
-    $handle = fopen($file, "r");
-    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-        // skip blank lines
-        $k = count($data);
-        if (! $k) {
+
+    $files = file($file);
+    
+    $list = array();
+    
+    foreach($files as $file){
+        if($file[0] == '-'){
             continue;
         }
-        // retain the line of data
-        for ($i = 0; $i < $k; $i++) {
-            $list[$line][$i] = $data[$i];
-        }
-        $line ++;
+        $f = explode('/', $file);
+        
+        $list[] = array(
+            'name' => $f[0],
+            'version' => $f[1],
+            'path' => $file
+        );
     }
-    fclose($handle);
+
     return $list;
 }
 
@@ -87,30 +90,26 @@ passthru("mkdir -p ./log/$time");
 
 // run each benchmark target
 $list = fetch_target_list($_SERVER['argv'][1]);
-foreach ($list as $key => $val) {
-    
-    $name = $val[0];
-    $path = $val[1];
-    
+foreach ($list as $framework) {
     // write the siegerc file
     write_siege_file(array(
-        'logfile' => "./log/$time/$name.log",
+        'logfile' => './log/'.$time.'/'.$framework['name'].'-'.$framework['version'].'.log',
     ));
     
     // restart the server for a fresh environment
     passthru("/etc/init.d/apache2 restart");
     
     // what href are we targeting?
-    $href = "http://localhost/$name/$path";
+    $href = "http://localhost/".$framework['path'];
     
     // prime the cache
-    echo "$name: prime the cache\n";
+    echo $framework['name'].": prime the cache\n";
     passthru("curl $href");
     echo "\n";
     
     // bench runs
     for ($i = 1; $i <= 5; $i++) {
-        echo "$name: pass $i\n";
+        echo $framework['name'].": pass $i\n";
         passthru("siege $href");
         echo "\n";
     }

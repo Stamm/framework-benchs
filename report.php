@@ -3,27 +3,6 @@
 ini_set('error_reporting', E_ALL|E_STRICT);
 ini_set('display_errors', true);
 
-// reads a csv file of targets
-function fetch_csv($file)
-{
-    $line = 0;
-    $handle = fopen($file, "r");
-    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-        // skip blank lines
-        $k = count($data);
-        if (! $k) {
-            continue;
-        }
-        // retain the line of data
-        for ($i = 0; $i < $k; $i++) {
-            $list[$line][$i] = $data[$i];
-        }
-        $line ++;
-    }
-    fclose($handle);
-    return $list;
-}
-
 if (empty($argv[1])) {
    echo "Please specify a log directory as the first argument.\n";
    exit(1);

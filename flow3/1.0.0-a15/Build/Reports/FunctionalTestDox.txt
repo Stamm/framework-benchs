@@ -1,0 +1,71 @@
+TYPO3\FLOW3\Tests\Functional\AOP\AopProxy
+ [x] Advices are executed again if an overridden method calls its parent method
+ [x] Method arguments with value null are passed to the proxied method
+
+TYPO3\FLOW3\Tests\Functional\AOP\Framework
+ [x] Result of say hello method is modified by world advice
+ [x] Advice recovers from exception
+ [x] Result of greet method is modified by special name advice
+ [x] Contain with spl object storage in runtime evaluation
+ [x] Constructor advices are invoked
+ [x] Advice information is also built when the target class is unserialized
+ [x] After returning advice is taking effect
+ [x] Code after the aop code in the proxy method is only called once
+ [x] Protected methods can also be adviced
+ [x] Result of greet object method is modified by advice
+ [x] This is supported in method runtime condition
+ [x] Global objects are supported in method runtime condition
+ [x] Interface with method can be introduced
+ [x] Properties can be introduced
+
+TYPO3\FLOW3\Tests\Functional\AOP\PointcutExpression
+ [x] Setting filter matches if specified setting is enabled
+
+TYPO3\FLOW3\Tests\Functional\Object\DependencyInjection
+ [x] Singleton objects can be injected into constructors of singleton objects
+ [x] Constructor injection can handle combinations of required autowired and optional arguments
+ [x] Properties are reinjected if the object is unserialized
+ [x] Virtual objects defined in objects yaml can use a factory for their actual implementation
+ [x] Constructor injection in singleton can handle argument defined in settings
+ [x] Singleton can handle injected prototype with setting argument
+ [x] Singleton can handle injected prototype with custom factory
+
+TYPO3\FLOW3\Tests\Functional\Object\ObjectManager
+ [x] If only one implementation exists get returns the implementation by the specified interface
+ [x] Prototype is the default scope if nothing else was defined
+ [x] Interface objects have the scope defined in the implementation class if nothing else was specified
+
+TYPO3\FLOW3\Tests\Functional\Object\ProxyCompiler
+ [x] Proxy classes still contain annotations from its original class
+ [x] Classes annotated with proxy disable are not proxied
+
+TYPO3\FLOW3\Tests\Functional\Persistence\Doctrine\Query
+ [x] Simple query can be serialized and deserialized
+ [x] More complex query can be serialized and deserialized
+ [x] More complex query can be executed after deserialization
+
+TYPO3\FLOW3\Tests\Functional\Persistence\Persistence
+ [x] Entities are persisted and reconstituted
+
+TYPO3\FLOW3\Tests\Functional\Property\PropertyMapper
+ [x] Domain object with simple properties can be created
+ [x] Simple object with simple properties can be created
+
+TYPO3\FLOW3\Tests\Functional\Reflection\ReflectionService
+ [x] The reflection service builds class schemata for entities
+ [x] The reflection service correctly builds method tags values
+
+TYPO3\FLOW3\Tests\Functional\Security\Context
+ [x] After serialization and unserialization context is set to uninitialized again
+
+TYPO3\FLOW3\Tests\Functional\Security\MethodSecurity
+ [x] Public action is granted for everybody
+ [x] Public action is granted for customer
+ [x] Public action is granted for administrator
+ [x] Customer action is denied for everybody
+ [x] Customer action is granted for customer
+ [x] Customer action is granted for administrator
+ [x] Admin action is denied for everybody
+ [x] Admin action is denied for customer
+ [x] Admin action is granted for administrator
+

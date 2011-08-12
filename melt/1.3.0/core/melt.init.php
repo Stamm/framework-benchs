@@ -72,8 +72,11 @@ function read_server_var($var_name, $alt_var_name = null) {
     if (!\array_key_exists($var_name, $_SERVER)) {
         if ($alt_var_name !== null && \array_key_exists($alt_var_name, $_SERVER))
             $var_name = $alt_var_name;
-        else
+        else {
+            var_dump(debug_backtrace());
             \trigger_error("Melt Framework initialization failed: Required \$_SERVER variable '$var_name' is not set! Webserver/PHP incompability?", \E_USER_ERROR);
+            
+        }
     }
     return $_SERVER[$var_name];
 }
@@ -133,6 +136,7 @@ function read_server_var($var_name, $alt_var_name = null) {
         if (!\preg_match('#/core/core\.php$#', $php_self))
             \trigger_error("Melt Framework initialization failed: PHP_SELF does not end with '/core/core.php'. Make sure the core is installed properly.", \E_USER_ERROR);
         \define("APP_ROOT_PATH", \substr($php_self, 0, -\strlen("core/core.php")));
+        
         // Determine if this is a proxy request or not, allowing melt to act as a proxy.
         if (isset($_SERVER["REQUEST_URI"]) && \preg_match('#^https?://#', \strtolower($_SERVER["REQUEST_URI"]))) {
             // For proxy requests the local REQ_URL is actually not defined,
@@ -141,6 +145,12 @@ function read_server_var($var_name, $alt_var_name = null) {
             \define("REQ_PROXY_URL", $_SERVER["REQUEST_URI"]);
             \define("REQ_URL", "/proxy");
             \define("REQ_URL_QUERY", REQ_URL);
+        } else if(isset($_SERVER["REQUEST_URI"]) && strpos($_SERVER["REQUEST_URI"],'core/core.php')){
+            //ONLY ADDED FOR TEST PURPOSES
+            \define("REQ_IS_PROXY", false);
+            \define("REQ_PROXY_URL", null);
+            \define("REQ_URL", '/'.$_SERVER["QUERY_STRING"]);
+            \define("REQ_URL_QUERY", '/'.$_SERVER["QUERY_STRING"]);
         } else {
             // Parse the request url which is relatie to the application root path.
             \define("REQ_IS_PROXY", false);
@@ -148,6 +158,8 @@ function read_server_var($var_name, $alt_var_name = null) {
             \define("REQ_URL", \substr(read_server_var("REDIRECT_SCRIPT_URL", "REDIRECT_URL"), \strlen(APP_ROOT_PATH) - 1));
             \define("REQ_URL_QUERY", REQ_URL . (isset($_SERVER["REDIRECT_QUERY_STRING"])? "?" . $_SERVER["REDIRECT_QUERY_STRING"]: ""));
         }
+        
+        
     } else {
         $hostname = \gethostname();
         // Script request mode does not have a developer validation mechanism.

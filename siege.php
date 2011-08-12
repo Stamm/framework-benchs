@@ -91,9 +91,12 @@ passthru("mkdir -p ./log/$time");
 // run each benchmark target
 $list = fetch_target_list($_SERVER['argv'][1]);
 foreach ($list as $framework) {
+    
+    $name = $framework['name'].'-'.$framework['version'];
+    
     // write the siegerc file
     write_siege_file(array(
-        'logfile' => './log/'.$time.'/'.$framework['name'].'-'.$framework['version'].'.log',
+        'logfile' => './log/'.$time.'/'.$name.'.log',
     ));
     
     // restart the server for a fresh environment
@@ -103,13 +106,13 @@ foreach ($list as $framework) {
     $href = "http://localhost/".$framework['path'];
     
     // prime the cache
-    echo $framework['name'].": prime the cache\n";
+    echo $name.": prime the cache\n";
     passthru("curl $href");
     echo "\n";
     
     // bench runs
     for ($i = 1; $i <= 5; $i++) {
-        echo $framework['name'].": pass $i\n";
+        echo $name.": pass $i\n";
         passthru("siege $href");
         echo "\n";
     }

@@ -1,5 +1,7 @@
 symfony-2.0.0alpha1/hello/cache/*
 symfony/1.4.13/cache/*
+symfony/2.0.0/app/cache/*
+symfony/2.0.6/app/cache/*
 flow3-1.0.0alpha7/Data/Temporary/*
 lithium-0.6/app/resources/tmp/cache/*
 cakephp/2.0.0-b/app/tmp/cache/*
@@ -7,3 +9,5 @@ cakephp/1.2.10/app/tmp/cache/*
 cakephp/1.3.11/app/tmp/cache/*
 nbproject
 *.DS_Store
+
+log/*

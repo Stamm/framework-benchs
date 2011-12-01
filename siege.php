@@ -100,7 +100,8 @@ foreach ($list as $framework) {
     ));
     
     // restart the server for a fresh environment
-    passthru("/etc/init.d/apache2 restart");
+    passthru("/etc/init.d/nginx restart");
+    passthru("/etc/init.d/php5-fpm restart");
     
     // what href are we targeting?
     $href = "http://localhost/".$framework['path'];
